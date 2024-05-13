@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+.buttons>* {
+    border: 1px solid black;
+    text-align: center;
+    font-size: 50px;
+    height: 100px;
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+.buttons>*:hover {
+    background-color: rgba(100, 100, 100, 0.25);
+}
+
+.buttons>*:active {
+    background-color: rgba(100, 100, 100, 0.75);
+}
+
+.buttons {
+    display: grid;
+    grid-area: buttons;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "display display display display"
+        "clear-btn clear-btn backspace-btn divide-btn"
+        "seven-btn eight-btn nine-btn multiply-btn"
+        "four-btn five-btn six-btn minus-btn"
+        "one-btn two-btn three-btn plus-btn"
+        "zero-btn zero-btn zero-btn eq-btn";
+}
+
+.calculator {
+    max-width: 400px;
+    display: grid;
+    grid-template-areas:
+        "display"
+        "buttons";
+}
+
+.display {
+    grid-area: display;
+    font-size: 60px;
+    text-align: right;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.clear-btn {
+    grid-area: clear-btn;
+}
+
+.backspace-btn {
+    grid-area: backspace-btn;
+}
+
+.divide-btn {
+    background-color: coral;
+    color: white;
+    grid-area: divide-btn;
+}
+
+.multiply-btn {
+    background-color: coral;
+    color: white;
+    grid-area: multiply-btn;
+}
+
+.plus-btn {
+    background-color: coral;
+    color: white;
+    grid-area: plus-btn;
+}
+
+.minus-btn {
+    background-color: coral;
+    color: white;
+    grid-area: minus-btn;
+}
+
+.eq-btn {
+    background-color: coral;
+    color: white;
+    grid-area: eq-btn;
+}
+
+.zero-btn {
+    grid-area: zero-btn;
+}
+
+
+.one-btn {
+    grid-area: one-btn;
+}
+
+.two-btn {
+    grid-area: two-btn;
+}
+
+.three-btn {
+    grid-area: three-btn;
+}
+
+.four-btn {
+    grid-area: four-btn;
+}
+
+.five-btn {
+    grid-area: five-btn;
+}
+
+.six-btn {
+    grid-area: six-btn;
+}
+
+.seven-btn {
+    grid-area: seven-btn;
+}
+
+.eight-btn {
+    grid-area: eight-btn;
+}
+
+.nine-btn {
+    grid-area: nine-btn;
+}

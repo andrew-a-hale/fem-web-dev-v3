@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+}
+
+.brand-header {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    grid-area: title;
+    font-size: 30px
+}
+
+.article-title {
+    font-style: italic;
+    text-align: center;
+    font-weight: 400;
+}
+
+.nav-links {
+    grid-area: nav-bar;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 26px;
+}
+
+.section-link {
+    text-decoration: none;
+    color: grey;
+    font-weight: 600;
+}
+
+.section-link:hover {
+    text-decoration: underline;
+}
+
+.page {
+    display: grid;
+    column-gap: 0px;
+    row-gap: 0px;
+    grid-template-areas:
+        "title title title"
+        "nav-bar nav-bar nav-bar"
+        "story-1 story-2 story-3"
+        "story-4 story-5 story-5";
+}
+
+.page>.nav-links {
+    border: solid;
+}
+
+.page>.story {
+    border-bottom: solid;
+    border-left: solid;
+    align-content: center;
+    padding: 10px;
+}
+
+.story-3,
+.story-5 {
+    border-right: solid;
+}
+
+.article-img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 75%;
+}
+
+.story-1 {
+    grid-area: story-1;
+}
+
+.story-2 {
+    grid-area: story-2;
+}
+
+.story-3 {
+    grid-area: story-3;
+}
+
+.story-4 {
+    grid-area: story-4;
+}
+
+.story-5 {
+    grid-area: story-5;
+}

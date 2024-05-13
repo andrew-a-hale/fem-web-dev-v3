@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./coffee.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <img class="logo"
+                src="https://btholt.github.io/complete-intro-to-web-dev-v3/images/coffee_masters_logo.png">
+            <h1 class="title">Coffee Masters</h1>
+        </div>
+
+        <div class="content">
+            <div class="items box">
+                <h2 class="items-title">ITEMS</h2>
+                <div class="item">
+                    <div class="item-qty">1x</div>
+                    <div class="item-name text-bold">Cappuccino</div>
+                    <div class="item-cost text-bold">$3.35</div>
+                    <ul class="item-notes">
+                        <li>Lite Foam</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <div class="item-qty">1x</div>
+                    <div class="item-name text-bold">Cappuccino</div>
+                    <div class="item-cost text-bold">$3.85</div>
+                    <ul class="item-notes">
+                        <li>Lite Foam</li>
+                        <li>Double Espresso</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <div class="item-qty">1x</div>
+                    <div class="item-name text-bold">Croissant</div>
+                    <div class="item-cost text-bold">$2.45</div>
+                    <ul class="item-notes">
+                        <li>Butter</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="customer box input-form">
+                <h2 class="customer-title input-form-title">NAME</h2>
+                <div class="input-group">
+                    <label for="name" class="input-label">Name for order</label>
+                    <input class="input-field" type="text" id="name">
+                </div>
+            </div>
+
+            <div class="payment box input-form">
+                <h2 class="payment-title input-form-title">PAYMENT</h2>
+                <div class="input-group">
+                    <label for="card-number" class="input-label">Card number</label>
+                    <input class="input-field" type="text" id="card-number">
+                </div>
+                <div class="input-group">
+                    <label for="ccv-number" class="input-label">CCV number</label>
+                    <input class="input-field short" type="text" id="ccv-number">
+                </div>
+            </div>
+
+            <div class="receipt">
+                <table class="receipt-table">
+                    <tr>
+                        <td class="receipt-item">Subtotal:</td>
+                        <td class="receipt-cost">$9.65</td>
+                    </tr>
+                    <tr>
+                        <td class="receipt-item">Tax:</td>
+                        <td class="receipt-cost">$0.82</td>
+                    </tr>
+                    <tr>
+                        <td class="receipt-item text-bold">Total:</td>
+                        <td class="receipt-cost text-bold">$10.47</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="place-order">
+                <button class="place-order-btn" id="place-order">
+                    <label for="place-order">Place order</label>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+:root {
+    --darkbrown: #43282c;
+    --cream: #fbf2c0;
+    --brownhighlight: #885a2d;
+    --brownfade: #B08968;
+    --brownbackground: #eee1d5;
+    --graybackground: #efefef;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.text-bold {
+    font-weight: 600;
+}
+
+.short {
+    max-width: 33%;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.input-field {
+    border-color: var(--brownhighlight);
+    background-color: var(--brownbackground);
+    width: 100%;
+    padding: 8px;
+    border-radius: 100px;
+}
+
+.input-label {
+    background-color: var(--brownbackground);
+    color: var(--brownhighlight);
+    font-size: 11px;
+    position: absolute;
+    left: 25px;
+    top: -7px;
+    padding: 0 2px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.receipt {
+    grid-area: receipt;
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 5px;
+    padding: 5px;
+    background-color: var(--brownbackground);
+}
+
+.content {
+    display: grid;
+    padding: 30px;
+    background-color: var(--graybackground);
+    column-gap: 30px;
+    row-gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "items customer"
+        "items payment"
+        "receipt receipt"
+        "place-order place-order";
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--darkbrown);
+    color: var(--cream);
+}
+
+.items-title {
+    font-weight: 400;
+    color: var(--brownhighlight);
+}
+
+.customer-title {
+    font-weight: 400;
+    color: var(--brownhighlight);
+}
+
+.payment-title {
+    font-weight: 400;
+    color: var(--brownhighlight);
+}
+
+.items {
+    grid-area: items;
+}
+
+.customer {
+    grid-area: customer;
+}
+
+.payment {
+    grid-area: payment;
+}
+
+.place-order {
+    grid-area: place-order;
+    display: flex;
+    justify-content: center;
+}
+
+.item:last-child {
+    border: none;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    border-bottom: 2px solid var(--brownfade);
+    padding: 10px;
+    row-gap: 10px;
+    grid-template-areas:
+        "item-qty item-name item-cost"
+        "item-qty item-notes item-cost";
+}
+
+.item-qty {
+    grid-area: item-qty;
+    margin: 0px;
+}
+
+.item-name {
+    grid-area: item-name;
+    margin: 0px;
+}
+
+.item-cost {
+    grid-area: item-cost;
+    margin: 0px;
+}
+
+.item-notes {
+    color: var(--brownfade);
+    grid-area: item-notes;
+    list-style: none;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+.receipt-table {
+    width: 100%;
+    padding: 30px;
+    max-width: 500px;
+}
+
+.receipt-item {
+    text-align: left;
+    padding: 10px;
+}
+
+.receipt-cost {
+    text-align: right;
+    padding: 10px;
+}
+
+.place-order-btn {
+    width: 100%;
+    border-radius: 100px;
+    height: 30px;
+    background-color: var(--darkbrown);
+    color: var(--cream);
+    border: none;
+}
