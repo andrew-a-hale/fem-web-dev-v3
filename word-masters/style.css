@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+.show {
+    visibility: unset;
+}
+
+.hide {
+    visibility: hidden;
+}
+
 .game {
     display: flex;
     justify-content: center;
@@ -14,8 +22,10 @@
     display: flex;
     justify-content: center;
     font-size: 30px;
-    /* animation: glow 1.5s infinite linear; */
-    animation: none;
+}
+
+.glow {
+    animation: glow 1.5s infinite linear;
 }
 
 @keyframes glow {
@@ -45,7 +55,6 @@
 }
 
 .loader {
-    display: none;
     margin: auto;
     border: 10px solid silver;
     border-top: 10px solid cornflowerblue;
@@ -81,5 +90,38 @@
     border: 3px solid slategray;
     width: 50px;
     height: 50px;
-    margin: 5px
+    margin: 5px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notpresent {
+    background-color: rgb(183, 195, 207);
+    color: white
+}
+
+.present {
+    background-color: #b59f3b;
+    color: white;
+}
+
+.hit {
+    background-color: #538d4e;
+    color: white;
+}
+
+.invalid {
+    animation: invalid 1s;
+}
+
+@keyframes invalid {
+    10% {
+        border-color: red;
+    }
+
+    100% {
+        border-color: slategray;
+    }
 }
