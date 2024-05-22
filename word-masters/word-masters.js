@@ -5,48 +5,35 @@ var guess = 1;
 var buffer = "";
 const inputCharSet = /^[a-zA-Z]$/;
 const MAX_LENGTH = 5;
+const ROUNDS = 6;
+let isLoading = true;
 
-function flashInvalidGuess() {
-    boxes = document.querySelector(`.guess-${guess}`).children
+function flashWord() {
+    boxes = document.querySelector(`.guess-${guess}`).children;
     for (let i = 0; i < boxes.length; i++) {
-        boxes[i].classList.add("invalid")
+        boxes[i].classList.remove("invalid");
+        setTimeout(() => { boxes[i].classList.add("invalid") }, 10)
     }
 }
 
-function removeFlash() {
-    boxes = document.querySelector(`.guess-${guess}`).children
-    for (let i = 0; i < boxes.length; i++) {
-        boxes[i].classList.remove("invalid")
-    }
-}
-
-function startLoader() {
-    document.querySelector(".loader").classList.remove("hide");
-    document.querySelector(".loader").classList.add("show");
-}
-
-function stopLoader() {
-    document.querySelector(".loader").classList.remove("show");
-    document.querySelector(".loader").classList.add("hide");
+function toggleLoader(isLoading) {
+    document.querySelector(".loader").classList.toggle("hide", !isLoading);
 }
 
 async function getSecretWord(puzzleNo) {
-    startLoader();
-
     var url = getSecretWordUrl;
     if (puzzleNo) {
         req = url + "?puzzle=" + puzzleNo;
     }
 
-    req = await fetch(url);
-    const resp = await req.json();
-    stopLoader();
+    res = await fetch(url);
+    const { word } = await res.json();
 
-    return resp.word.toLocaleUpperCase();
+    return word.toLocaleUpperCase();
 }
 
 async function isValidWord(word) {
-    const req = await fetch(
+    const res = await fetch(
         postValidateWordUrl,
         {
             method: "POST",
@@ -57,20 +44,26 @@ async function isValidWord(word) {
         }
     );
 
-    const resp = await req.json();
-    return resp.validWord;
+    const { validWord } = await res.json();
+    return validWord;
 }
 
 async function gameLoop(event) {
+    if (isLoading) {
+        return;
+    }
+
     switch (event.key) {
         case "Enter":
-            startLoader();
+            isLoading = true;
+            toggleLoader(isLoading);
             await validateWord();
-            stopLoader();
+            isLoading = false;
+            toggleLoader(false);
             break;
         case "Backspace":
             buffer = buffer.substring(0, buffer.length - 1);
-            processBuffer(buffer);
+            processBuffer();
             break;
         default:
             if (isLetter(event.key) && buffer.length < MAX_LENGTH) {
@@ -106,33 +99,30 @@ async function validateWord() {
 
     let isValid = await isValidWord(buffer);
     if (!isValid) {
-        flashInvalidGuess();
+        flashWord();
         return;
     }
 
-    let secret = secretWord;
-    let marked = [];
     // check hits
+    let secret = secretWord;  // copy of secretWord to be consumed
     for (let i = 0; i < buffer.length; i++) {
         box = document.querySelector(`.guess-${guess}`).children[i];
-        if (buffer[i] == secret[i]) {
-            marked.push(i);
+        if (buffer[i] == secretWord[i]) {
             box.classList.add("hit");
-            secret = modifyCharAt(secret, i, "-");
+            secret = modifyCharAt(secret, i, "-");  // consume letter
         }
     }
 
     // check present
     for (let i = 0; i < buffer.length; i++) {
-        if (marked.includes(i)) {
+        if (buffer[i] == secretWord[i]) {
             continue;
         }
 
         box = document.querySelector(`.guess-${guess}`).children[i];
         foundAt = secret.indexOf(buffer[i]);
         if (foundAt >= 0) {
-            marked.push(i);
-            secret = modifyCharAt(secret, foundAt, "-");
+            secret = modifyCharAt(secret, foundAt, "-");  // consume letter
             box.classList.add("present");
         } else {
             box.classList.add("notpresent");
@@ -147,7 +137,7 @@ async function validateWord() {
     }
 
     // lose
-    if (guess == 6) {
+    if (guess == ROUNDS) {
         alert("you lose, the word was " + secretWord);
     }
 
@@ -157,19 +147,17 @@ async function validateWord() {
 
 function processBuffer() {
     boxes = document.querySelector(`.guess-${guess}`).children;
-
-    removeFlash();
     for (let i = 0; i < boxes.length; i++) {
-        if (buffer[i]) {
-            boxes[i].innerText = buffer[i];
-        } else {
-            boxes[i].innerText = "";
-        }
+        boxes[i].innerText = buffer[i] || "";
     }
 }
 
 async function init() {
+    toggleLoader(isLoading);
     secretWord = await getSecretWord();
+    isLoading = false;
+    toggleLoader(isLoading);
+
     document.addEventListener("keydown", gameLoop);
 }
 
